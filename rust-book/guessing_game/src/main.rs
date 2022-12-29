@@ -1,6 +1,21 @@
-use d::cmp::Ordering;
-use d::io;
-use nd::Rng;
+use std::cmp::Ordering;
+use std::io;
+use rand::Rng;
+
+// Used to convert a guess into it's own type - not used in main()
+pub struct Guess { value: i32, }
+impl Guess {
+    pub fn new(value: i32) -> Guess {
+        if value < 1 || value > 100 {
+            panic!("Value must be between 1 and 100, got {}", value);
+        }
+
+        Guess{value}
+    }
+
+    // Getter, needed because value attr is private
+    pub fn value(&self) -> i32 { self.value }
+}
 
 fn main() {
     println!("Guess the number!");
