@@ -2,7 +2,6 @@ use std::cmp::Ordering;
 use std::io;
 use rand::Rng;
 
-// Used to convert a guess into it's own type - not used in main()
 pub struct Guess { value: i32, }
 impl Guess {
     pub fn new(value: i32) -> Guess {
@@ -17,22 +16,20 @@ impl Guess {
     pub fn value(&self) -> i32 { self.value }
 }
 
-fn main() {
+fn new_main() {
     println!("Guess the number!");
     println!("Input your guess");
-
-    let secret_number = rand::thread_rng().gen_range(1..=10);
-
+    let secret_number = rand::thread_rng().gen_range(1..=100);
+    
     loop {
         let mut guess = String::new();
         io::stdin().read_line(&mut guess).expect("Failed to read");
-        let guess: u32 = match guess.trim().parse() {
-            Ok(num) => num,
-            Err(_) => continue,
-        };
-        println!("Your guess: {guess}");
+        let val:i32 = guess.trim().parse().unwrap();
 
-        match guess.cmp(&secret_number) {
+        let guess = Guess::new(val);
+        println!("Your guess: {:?}", guess.value());
+
+        match guess.value().cmp(&secret_number) {
             Ordering::Less => println!("Too small"),
             Ordering::Greater => println!("Too big"),
             Ordering::Equal => {
@@ -42,3 +39,32 @@ fn main() {
         }
     }
 }
+
+
+// fn old_main() {
+//     println!("Guess the number!");
+//     println!("Input your guess");
+//
+//     let secret_number = rand::thread_rng().gen_range(1..=10);
+//
+//     loop {
+//         let mut guess = String::new();
+//         io::stdin().read_line(&mut guess).expect("Failed to read");
+//         let guess: u32 = match guess.trim().parse() {
+//             Ok(num) => num,
+//             Err(_) => continue,
+//         };
+//         println!("Your guess: {guess}");
+//
+//         match guess.cmp(&secret_number) {
+//             Ordering::Less => println!("Too small"),
+//             Ordering::Greater => println!("Too big"),
+//             Ordering::Equal => {
+//                 println!("You win");
+//                 break;
+//             }
+//         }
+//     }
+// }
+
+fn main() { new_main(); }
