@@ -13,17 +13,21 @@ fn main() {
     println!("{s3}");
 
     // Taken straight from the book, this demonstrates characters that are longer
-    // than a single byte - S4 holds the first two letters of hello which are 
+    // than a single byte - S4 holds the first two letters of hello which are
     // two bytes long each in utf-8
     let hello = "Здравствуйте";
     let s4 = &hello[0..4];
 
     // Print each character in string, which may not be appropriate for every
     // language
-    for c in hello.chars() { println!("{c}"); }
+    for c in hello.chars() {
+        println!("{c}");
+    }
 
     // Print each byte in string
-    for b in hello.bytes() { println!("{b}");}
+    for b in hello.bytes() {
+        println!("{b}");
+    }
 
     // If you need grapheme clusters, check out crates
 }

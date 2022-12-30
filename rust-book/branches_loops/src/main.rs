@@ -14,14 +14,14 @@ fn branches() {
     }
 
     // inline If
-    let foo = if number < 3 {5} else {6};
+    let foo = if number < 3 { 5 } else { 6 };
     println!("foo: {foo}");
 }
 
-fn loops() { 
+fn loops() {
     // while true
     // loop {println!("69");}
-    
+
     let mut counter = 0;
     'counting: loop {
         println!("count = {counter}");
@@ -29,8 +29,12 @@ fn loops() {
 
         loop {
             println!("remaining = {remaining}");
-            if remaining == 9 {break;}
-            if counter == 2 {break 'counting;}
+            if remaining == 9 {
+                break;
+            }
+            if counter == 2 {
+                break 'counting;
+            }
             remaining -= 1;
         }
         counter += 1;
@@ -38,7 +42,7 @@ fn loops() {
 }
 
 fn for_loop() {
-    let foo = [1,2,3,4,5,6,7];
+    let foo = [1, 2, 3, 4, 5, 6, 7];
     for elem in foo {
         println!("elem = {elem}");
     }

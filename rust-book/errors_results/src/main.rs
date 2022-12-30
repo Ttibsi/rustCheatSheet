@@ -1,7 +1,6 @@
 use std::fs;
 use std::io::ErrorKind;
 
-
 fn main() {
     let file_res = File::open("t.txt");
 
@@ -25,9 +24,9 @@ fn main() {
 }
 
 // The below function does a similar thing to above, reading the contents of
-// a file into the `user` string. 
+// a file into the `user` string.
 // The ? operator acts similarly to a match statement (ish), acting as an early
-// return of a value or error. This can't be used in main() because main() can't 
+// return of a value or error. This can't be used in main() because main() can't
 // return anything
 use std::fs::File;
 use std::io::{self, Read};

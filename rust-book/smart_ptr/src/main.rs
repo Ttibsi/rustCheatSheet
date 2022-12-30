@@ -3,7 +3,9 @@ use std::ops::Deref;
 struct MyBox<T>(T); // tuple struct with one param of type T
 
 impl<T> MyBox<T> {
-    fn new(x:T) -> MyBox<T>{ MyBox(x) }
+    fn new(x: T) -> MyBox<T> {
+        MyBox(x)
+    }
 }
 
 impl<T> Deref for MyBox<T> {
@@ -18,7 +20,6 @@ impl<T> Drop for MyBox<T> {
     fn drop(&mut self) {
         println!("dropping...");
     }
-
 }
 
 fn hello(name: &str) {

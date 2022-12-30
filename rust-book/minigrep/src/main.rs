@@ -10,7 +10,7 @@ fn main() {
     //     process::exit(1);
     // });
 
-    let config = Config::build(env::args()).unwrap_or_else(|err|{
+    let config = Config::build(env::args()).unwrap_or_else(|err| {
         eprintln!("Error parsing arguments: {err}"); // this redirects to stderr
         process::exit(1);
     });

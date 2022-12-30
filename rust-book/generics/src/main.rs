@@ -3,7 +3,9 @@ fn largest<T: std::cmp::PartialOrd>(list: &[T]) -> &T {
     let mut largest = &list[0];
 
     for i in list {
-        if i > largest { largest = i; }
+        if i > largest {
+            largest = i;
+        }
     }
 
     return largest;
@@ -12,17 +14,19 @@ fn largest<T: std::cmp::PartialOrd>(list: &[T]) -> &T {
 // Struct using generics
 #[derive(Debug)]
 struct Point<T> {
-    x:T,
-    y:T,
+    x: T,
+    y: T,
 }
 
 // generic struct methods
-impl<T> Point<T>{
-    fn x(&self) -> &T {return &self.x;}
+impl<T> Point<T> {
+    fn x(&self) -> &T {
+        return &self.x;
+    }
 }
 
 fn main() {
-    let num_list = vec![4,18, 12, 69, 420, 34];
+    let num_list = vec![4, 18, 12, 69, 420, 34];
     let char_list = vec!['a', 'g', 'y', 'w', 'p', 'c', 't'];
 
     println!("Largest number is: {}", largest(&num_list));
