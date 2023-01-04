@@ -1,4 +1,4 @@
-use std::sync::mpsc;
+use std::sync::{mpsc, Arc, Mutex};
 use std::thread;
 use std::time::Duration;
 
@@ -46,6 +46,33 @@ fn channels() {
     }
 }
 
+fn mutexes() {
+    let mutex = Mutex::new(5);
+
+    {
+        let mut num = mutex.lock().unwrap();
+        *num = 6;
+    }
+
+    // mutex in threads
+    let counter = Arc::new(Mutex::new(0));
+    let mut handles = vec![];
+    for _ in 0..10 {
+        let c = Arc::clone(&counter);
+        let handle = thread::spawn(move || {
+            let mut num = c.lock().unwrap();
+            *num += 1;
+        });
+        handles.push(handle);
+    }
+
+    for handle in handles {
+        handle.join().unwrap();
+    }
+
+    println!("Counter = {}", *counter.lock().unwrap());
+}
+
 fn main() {
-    channels()
+    mutexes()
 }
