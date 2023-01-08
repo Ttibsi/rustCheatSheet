@@ -11,7 +11,7 @@ fn main() {
     let pool = ThreadPool::new(4);
 
     // This is our loop to check for incoming data fromm the client
-    for stream in listener.incoming() {
+    for stream in listener.incoming().take(2) {
         let stream = stream.unwrap();
 
         pool.execute(||
